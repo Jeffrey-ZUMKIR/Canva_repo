@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		* {
+ 			box-sizing: border-box;
+		}
+
+		.column {
+		  	float: left;
+		  	width: 50%;
+		  	padding: 10px;
+		}
+
+		.row:after {
+			content: "";
+		  	display: table;
+		  	clear: both;
+		}
+		body{
+			background-image:linear-gradient(lightgreen, darkgreen);
+			background-size: 1530px 730px;
+		}
+		#canvas1{
+			background-color: white;
+			box-shadow: 3px 4px 2px 1px;
+		}
+		#canvas2{
+			background-image: linear-gradient(lightblue, blue, darkblue);
+			box-shadow: 3px 4px 2px 1px;
+		}
+		footer {
+		  	display: block;
+		  	background: lightgreen;
+		  	color: black;
+		  	bottom: 10px;
+		  	width: 99%;
+		  	position: fixed;
+		}
+		#div_footer {
+			border: groove 5px green;
+		}
+		h2{
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="column">
+			<h2>Drapeau JO</h2>
+			<canvas id="canvas1" width="300" height="200" align="center" style="border: 2px solid black;"></canvas>
+		</div>
+		<div class="column">
+			<h2>Bateau</h2>
+			<canvas id="canvas2" width="400" height="400" style="border: solid black 2px;"></canvas>
+		</div>
+	</div>
+	<footer>
+		<script type="text/javascript">
+			//JO
+			let canvas1 = document.getElementById("canvas1");
+			let ctx1 = canvas1.getContext("2d");
+			let color;
+			//3 top circle
+			x = canvas1.width/4;
+			ctx1.lineWidth = 5;
+			for (i=1;i<=3;i++){
+				ctx1.beginPath();
+				ctx1.arc(x,canvas1.height/2-19,canvas1.height*0.16, 0, 2 *Math.PI);
+				switch(i){
+					case (1):
+						color = "blue";
+						break;
+					case (2):
+						color = "black";
+						break;
+					case (3):
+						color = "red";
+						break;
+				}
+				ctx1.strokeStyle = color;
+				ctx1.stroke();
+				ctx1.closePath();
+				x = x+canvas1.width/4;
+			}
+			// 2 bottom circle
+			x = canvas1.height/2*0.15+canvas1.width/3-3;
+			for (i=1;i<=2;i++){
+				ctx1.beginPath();
+				ctx1.arc(x,canvas1.height/2+19,canvas1.height*0.16, 0, 2 *Math.PI);
+				switch(i){
+					case (1):
+						color = "yellow";
+						break;
+					case (2):
+						color = "darkgreen";
+						break;
+				}
+				ctx1.strokeStyle = color;
+				ctx1.stroke();
+				ctx1.closePath();
+				x = 2*canvas1.width/3-canvas1.height/2*0.15+2;
+			}
+
+			//Bateau
+			let canvas2 = document.getElementById("canvas2");
+			let ctx2 = canvas2.getContext("2d");
+			//Voile
+			ctx2.beginPath();
+			ctx2.lineWidth = 0;
+			ctx2.fillStyle = "lightblue";
+			ctx2.strokeStyle= "lightblue";
+			ctx2.moveTo(150, 80);
+			ctx2.lineTo(300, 230);
+			ctx2.lineTo(150, 230);
+			ctx2.fill();
+			ctx2.closePath();
+			ctx2.stroke();
+			//Coque
+			ctx2.beginPath();
+			ctx2.lineWidth = 4;
+			ctx2.fillStyle = "#CD853F";
+			ctx2.strokeStyle= "#A0522D";
+			ctx2.moveTo(50, 250);
+			ctx2.lineTo(100, 300);
+			ctx2.lineTo(250, 300);
+			ctx2.lineTo(300, 250);
+			ctx2.fill();
+			ctx2.closePath();
+			ctx2.stroke();
+			//Mat
+			ctx2.beginPath();
+			ctx2.lineWidth = 10;
+			ctx2.moveTo(140, 60);
+			ctx2.lineTo(140, 250);
+			ctx2.closePath();
+			ctx2.stroke();
+			
+		</script>
+		<div id="div_footer">
+			<p>Jeffrey Zumkir F1</p>
+			<p>Contact information: <a href="mailto:j.zumkir@ludus-academie.com">j.zumkir@ludus-academie.com</a></p>
+			<p style="text-align: right;"><a href="">Source</a></p>
+		</div>
+	</footer>
+</body>
+</html>
